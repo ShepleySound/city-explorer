@@ -28,5 +28,6 @@ This project is being developed as a full-stack mapping application that uses da
 | Feature Name | Estimated Time | Start Time | Finish Time |
 | ------------ | -------------- | ---------- | ----------- |
 | Repository/Project Setup | 30 Minutes | 2:40PM | 3:00PM |
-| 
+| Location Data | 1 Hour | 3:15PM | 4:45PM |
+| Static Map | 1 Hour
 
