@@ -45,24 +45,14 @@
 }
 
 .Main {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: ; */
-}
-
-.card-header {
-  font-size: .8rem;
-}
-
-.card-body {
-  font-size: .8rem;
-}
-
-.Main_mapImage {
-  position: absolute;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .LocationData {
-  width: min-content;
-  opacity: 80%;
+  opacity: 90%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
