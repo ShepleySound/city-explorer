@@ -4,6 +4,7 @@
 **Version**: 0.1.0  
 
 ## Overview
+
 This project is being developed as a full-stack mapping application that uses data from the locationIQ API to let users display maps from various locations. ***TO BE ALTERED***
 
 ## Getting Started
@@ -26,7 +27,6 @@ This project is being developed as a full-stack mapping application that uses da
 
 | Feature Name | Estimated Time | Start Time | Finish Time |
 | ------------ | -------------- | ---------- | ----------- |
-| Initial Import | 15 Minutes | 1:30PM | 1:40PM |
-| Customize Name | 10 Minutes | 2:55PM | 3PM |
-| About Me | 1 Hour | 3PM | 4:15PM |
-| Projects | 1.5 Hours | 4:30PM | 5:10PM |
+| Repository/Project Setup | 30 Minutes | 2:40PM | 3:00PM |
+| 
+
