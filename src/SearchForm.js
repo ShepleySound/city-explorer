@@ -7,13 +7,13 @@ import searchIcon from './search-icon.svg'
 class SearchForm extends React.Component {
   render() {
     return (
-      <Form className="SearchForm">
+      <Form onSubmit={this.props.handleSearch} className="SearchForm">
         <InputGroup>
         <Form.Control
           onChange={this.props.handleChange}
           placeholder="Enter Location..."
         />
-        <Button onClick={this.props.handleSearch} variant="outline-secondary"><img src={searchIcon} alt="Search" width='20'/></Button>
+        <Button type="submit" variant="outline-secondary"><img src={searchIcon} alt="Search" width='20'/></Button>
         </InputGroup>
       </Form>
 

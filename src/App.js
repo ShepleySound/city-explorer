@@ -1,6 +1,7 @@
 import logo from './map-icon.svg';
 import './App.css';
-import SearchForm from './SearchForm.js'
+import SearchForm from './SearchForm.js';
+import LocationDataDisplay from './LocationDataDisplay';
 import React from 'react';
 import axios from 'axios';
 
@@ -8,22 +9,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locationResult: null,
+      locationData: null,
       searchQuery: null,
     }
   }
 
   handleChange = (e) => {
     this.setState({
-      searchQuery: '',
+      searchQuery: e.target.value,
     });
   };
   handleSearch = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=seattle&format=json`)
+      const response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json`)
       this.setState({
-        locationResult: response.data[0]
+        locationData: response.data[0]
       })
     } catch (error) {
       console.log(error)
@@ -31,7 +32,8 @@ class App extends React.Component {
 
   }
   render() {
-    console.log(this.state.locationResult)
+    console.log(process.env)
+    console.log(this.state.searchQuery)
     return (
       <>
         <header className="Header">
@@ -39,9 +41,9 @@ class App extends React.Component {
           <SearchForm handleChange={this.handleChange} handleSearch={this.handleSearch}></SearchForm>
         </header>
         <main>
-          <p>{this.state.locationResult?.display_name}</p>
-          <p>{this.state.locationResult?.lat}</p>
-          <p>{this.state.locationResult?.lon}</p>
+          <LocationDataDisplay
+            locationData={this.state.locationData}
+          />
         </main>
         <footer>
   
