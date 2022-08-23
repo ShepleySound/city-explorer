@@ -56,6 +56,13 @@ Mapping/Geocoding API - [LocationIQ](https://locationiq.com/)
 HTTP Client - [Axios](https://www.npmjs.com/package/axios)
 
 This project was bootstrapped with create-react-app. The application uses Axios as an HTTP client to query the LocationIQ API using a simple text input from the user. If a valid response is received, the application requests further data in the form of a map image, which is then displayed to the page.
+
+<details><summary>Front-End Response Request Diagram</summary>
+
+![Front-End Response Request Diagram](docs/front-end_response-request.jpg)
+
+</details>
+
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 -->
