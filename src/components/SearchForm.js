@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert';
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
-import searchIcon from './assets/search-icon.svg'
+import searchIcon from '../assets/search-icon.svg'
 
 class SearchForm extends React.Component {
 
