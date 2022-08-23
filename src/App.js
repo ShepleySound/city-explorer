@@ -23,6 +23,7 @@ class App extends React.Component {
   };
 
   handleSearch = async (e) => {
+    console.log(window)
     e.preventDefault()
     try {
       const response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json`)
@@ -34,6 +35,7 @@ class App extends React.Component {
     }
   };
   render() {
+    console.log(window.innerWidth, window.innerHeight)
     return (
       <>
         <header className="Header">
@@ -41,13 +43,13 @@ class App extends React.Component {
           <SearchForm handleChange={this.handleChange} handleSearch={this.handleSearch}></SearchForm>
         </header>
         <main className='Main'>
-          <LocationDataDisplay
-            locationData={this.state.locationData}
-          />
           <Image
             fluid
             className="Main_mapImage" 
             src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.locationData?.lat},${this.state.locationData?.lon}&zoom=13`}
+          />
+          <LocationDataDisplay
+            locationData={this.state.locationData}
           />
         </main>
         <footer>

@@ -41,11 +41,28 @@
 .Header {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .Main {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: ; */
 }
 
-.Main_mapImage {}
+.card-header {
+  font-size: .8rem;
+}
+
+.card-body {
+  font-size: .8rem;
+}
+
+.Main_mapImage {
+  position: absolute;
+}
+
+.LocationData {
+  width: min-content;
+  opacity: 80%;
+}

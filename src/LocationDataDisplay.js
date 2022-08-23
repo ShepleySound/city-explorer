@@ -7,7 +7,7 @@ class LocationDataDisplay extends React.Component {
       <>
       {/* Only render if locationData exists */}
       { this.props.locationData &&
-      <div>
+      <div className="LocationData">
         <Card className="text-center">
           <Card.Header>Location</Card.Header>
           <Card.Body>{this.props.locationData?.display_name}</Card.Body>
