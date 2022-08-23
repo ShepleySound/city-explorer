@@ -8,7 +8,6 @@
 This project is being developed as a full-stack mapping application that uses data from the locationIQ API to let users display maps from various locations. ***TO BE ALTERED***
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
