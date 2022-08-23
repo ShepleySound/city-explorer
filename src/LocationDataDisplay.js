@@ -15,7 +15,6 @@ class LocationDataDisplay extends React.Component {
   }
   
   render() {
-    console.log(this.state.eventKey)
     return (
       <>
       {/* Only render if locationData exists */}

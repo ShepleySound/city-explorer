@@ -1,18 +1,19 @@
-import logo from './map-icon.svg';
-import './App.css';
+import logo from './assets/map-icon.svg';
 import SearchForm from './SearchForm.js';
 import LocationDataDisplay from './LocationDataDisplay';
 import Image from 'react-bootstrap/Image';
 import React from 'react';
 import axios from 'axios';
+import './App.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locationData: null,
-      searchQuery: 'seattle',
+      searchResult: null,
+      searchQuery: '',
       mapURL: '',
+      thrownError: null,
     }
   }
 
@@ -26,34 +27,38 @@ class App extends React.Component {
     e.preventDefault()
     try {
       const response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1`)
-      console.log(response)
       this.setState({
-        locationData: response.data[0],
+        searchResult: response.data[0],
+        thrownError: null,
       })
     } catch (error) {
-      console.log(error)
+      this.setState({
+        thrownError: error,
+      })
     }
   };
   render() {
-    console.log(window.innerWidth, window.innerHeight)
     return (
       <>
         <header className="Header">
           <img src={logo} className="App-logo" alt="logo" />
-          <SearchForm handleChange={this.handleChange} handleSearch={this.handleSearch}></SearchForm>
+          <SearchForm thrownError={this.state.thrownError} handleChange={this.handleChange} handleSearch={this.handleSearch}></SearchForm>
         </header>
         <main className='Main'>
-          <LocationDataDisplay
-            locationData={this.state.locationData}
-          />
-          <Image
-            fluid
-            className="Main_mapImage" 
-            src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.locationData?.lat},${this.state.locationData?.lon}&zoom=13`}
-          />
+        { !this.state.thrownError && this.state.searchResult &&
+          <>
+            <LocationDataDisplay
+              locationData={this.state.searchResult}
+            />
+            <Image
+              fluid
+              className="Main_mapImage" 
+              src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13`}
+            />
+          </>
+        }
         </main>
         <footer>
-  
         </footer>
       </>
     );
