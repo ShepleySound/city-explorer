@@ -12,7 +12,6 @@ class App extends React.Component {
     this.state = {
       searchResult: null,
       searchQuery: '',
-      mapURL: '',
       thrownError: null,
     }
   }
@@ -50,11 +49,20 @@ class App extends React.Component {
             <LocationDataDisplay
               locationData={this.state.searchResult}
             />
-            <Image
+            <picture className="MapSlot">
+              <source media="(max-width: 600px)" srcSet={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=600x1200`}/>
+              <source media="(min-width: 800px)" srcSet={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=1920x1080`}/>
+              <Image className='MapSlot_image' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=480x480`} alt="Map"/>
+            </picture>
+            {/* <Image
               fluid
               className="Main_mapImage" 
-              src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13`}
-            />
+              srcSet=
+              {`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=300x300 300w,
+              https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=1200x800 1200w`}
+              sizes="(max-width: 600px) 300px,
+                     1200px"
+            /> */}
           </>
         }
         </main>
