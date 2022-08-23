@@ -1,22 +1,29 @@
 import logo from './map-icon.svg';
 import './App.css';
-import Form from 'react-bootstrap/Form'
+import SearchForm from './SearchForm.js'
+import React from 'react';
 
-function App() {
-  return (
-    <>
-      <header className="Header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends React.Component {
 
-      </header>
-      <main>
-
-      </main>
-      <footer>
-
-      </footer>
-    </>
-  );
+  handleSearch() {
+    console.log("Hello!")
+  }
+  render() {
+    return (
+      <>
+        <header className="Header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <SearchForm handleSearch={this.handleSearch}></SearchForm>
+  
+        </header>
+        <main>
+        </main>
+        <footer>
+  
+        </footer>
+      </>
+    );
+  }
 }
 
 export default App;
