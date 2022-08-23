@@ -42,3 +42,10 @@
   display: flex;
   align-items: center;
 }
+
+.Main {
+  display: flex;
+  flex-direction: column;
+}
+
+.Main_mapImage {}

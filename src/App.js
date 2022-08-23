@@ -40,11 +40,15 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <SearchForm handleChange={this.handleChange} handleSearch={this.handleSearch}></SearchForm>
         </header>
-        <main>
+        <main className='Main'>
           <LocationDataDisplay
             locationData={this.state.locationData}
           />
-          <Image src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.locationData?.lat},${this.state.locationData?.lon}&zoom=13`}></Image>
+          <Image
+            fluid
+            className="Main_mapImage" 
+            src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.locationData?.lat},${this.state.locationData?.lon}&zoom=13`}
+          />
         </main>
         <footer>
   
