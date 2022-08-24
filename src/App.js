@@ -13,6 +13,7 @@ class App extends React.Component {
       searchResult: null,
       searchQuery: '',
       thrownError: null,
+      weatherForecast: null,
     }
   }
 
@@ -25,10 +26,12 @@ class App extends React.Component {
   handleSearch = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1`)
+      const locationResponse = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1`);
+      const weatherResponse = await axios.get(`http://localhost:3001/weather?search_query=${this.state.searchQuery}`);
       this.setState({
-        searchResult: response.data[0],
+        searchResult: locationResponse.data[0],
         thrownError: null,
+        weatherForecast: weatherResponse.data,
       })
     } catch (error) {
       this.setState({
@@ -48,6 +51,7 @@ class App extends React.Component {
           <>
             <LocationDataDisplay
               locationData={this.state.searchResult}
+              weatherData={this.state.weatherForecast}
             />
             <picture className="MapSlot">
               <source media="(max-width: 799px)" srcSet={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=600x1200`}/>

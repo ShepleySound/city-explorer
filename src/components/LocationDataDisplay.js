@@ -1,5 +1,6 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
+import Weather from "./Weather";
 
 class LocationDataDisplay extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class LocationDataDisplay extends React.Component {
   }
   
   render() {
+  
+
     return (
       <>
       {/* Only render if locationData exists */}
@@ -26,7 +29,17 @@ class LocationDataDisplay extends React.Component {
             { this.props.locationData?.display_name } 
             </Accordion.Header>
             <Accordion.Body>
-              {this.props.locationData?.lat}, {this.props.locationData?.lon}
+              <div className="LocationData_coordinates">
+                {this.props.locationData?.lat}, {this.props.locationData?.lon}
+              </div>
+              {this.props.weatherData &&
+              
+              <ul className="LocationData_weatherList">
+                {this.props.weatherData.map((day, i) => 
+                  <Weather key={i} weatherDate={day.date} weatherDescription={day.description}/>
+                  )}
+              </ul>
+              }
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
