@@ -75,6 +75,8 @@ This project was bootstrapped with create-react-app. The application uses Axios 
 
 ***08-22-2022 9:30PM*** - Application outputs a warning when the API responds with an error.  
 
+***08-23-2022 6:15PM*** - Application displays weather data for static data from a custom API.
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
@@ -89,3 +91,9 @@ This project was bootstrapped with create-react-app. The application uses Axios 
 | Static Map | 1 Hour | 4:50 | 5:55PM |
 | Page Styling | 2 Hours | 6:30PM | 8:00PM |
 | Error Handling | 1 Hour | 8:15PM | 9:30PM |
+
+### August 23, 2022
+
+| Feature Name | Estimated Time | Start Time | Finish Time |
+| ------------ | -------------- | ---------- | ----------- |
+| Weather Client | 45 Minutes | 5:30PM | 6:15PM |
