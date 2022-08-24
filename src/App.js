@@ -27,8 +27,7 @@ class App extends React.Component {
     e.preventDefault()
     try {
       const locationResponse = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1`);
-      console.log(locationResponse.data[0])
-      const weatherResponse = await axios.get(`http://localhost:3001/weather?search_query=${this.state.searchQuery}&lat=${locationResponse.data[0].lat}&lon=${locationResponse.data[0].lon}`);
+      const weatherResponse = await axios.get(`https://shepleysound-city-explorer-api.herokuapp.com/weather?lat=${locationResponse.data[0].lat}&lon=${locationResponse.data[0].lon}`);
       this.setState({
         searchResult: locationResponse.data[0],
         thrownError: null,
