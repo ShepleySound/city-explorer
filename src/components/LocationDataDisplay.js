@@ -14,12 +14,6 @@ class LocationDataDisplay extends React.Component {
       return {eventKey: state.eventKey ? 0 : 1 }
     });
   }
-
-  createWeather = () => {
-    this.props.weatherData.map((day, i) => {
-      <Weather key={i} weatherDate={day.date} weatherDescription={day.description}/>
-    })
-  }
   
   render() {
   
@@ -35,9 +29,12 @@ class LocationDataDisplay extends React.Component {
             { this.props.locationData?.display_name } 
             </Accordion.Header>
             <Accordion.Body>
-              {this.props.locationData?.lat}, {this.props.locationData?.lon}
+              <div className="LocationData_coordinates">
+                {this.props.locationData?.lat}, {this.props.locationData?.lon}
+              </div>
               {this.props.weatherData &&
-              <ul>
+              
+              <ul className="LocationData_weatherList">
                 {this.props.weatherData.map((day, i) => 
                   <Weather key={i} weatherDate={day.date} weatherDescription={day.description}/>
                   )}
