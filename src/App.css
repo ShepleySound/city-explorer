@@ -60,26 +60,54 @@
   object-fit: contain;
 }
 
+.LocationBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .LocationData_weatherList {
   display: flex;
   align-items: center;
   justify-content: space-around;
-
+  flex: 1 1;
 }
 
-.LocationData_movieList {
-  display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
-}
 
 .WeatherCard {
-  width: max-content;
+  /* width: max-content; */
+  flex: 1 1;
 }
 
-/* .MovieList {
-  max-height: 500px;
-} */
 
-/* .MovieList_posterImage {
+.Movie {
+  max-width: 780px;
+
+}
+
+.Movie_image {
   object-fit: cover;
-} */
+  width: 100%;
+  max-height: 75vh;
+}
+
+.Movie_caption {
+  max-height: 70%;
+  overflow: scroll;
+  top: 1rem;
+  bottom: 1rem;
+  scrollbar-width: none;
+}
+
+.Movie_caption::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.Movie_caption_title {
+  background-color: #121212aa;
+}
+
+.Movie_caption_description {
+  background-color: #12121264;
+}

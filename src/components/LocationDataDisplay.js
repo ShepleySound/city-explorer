@@ -17,19 +17,24 @@ class LocationDataDisplay extends React.Component {
   }
   
   render() {
-  
+
+  const movieItems = () => {
+    console.log(this.props.movieData)
+    return this.props.movieData.map((movieItem, i) => 
+        <Movie key={i} movieTitle={movieItem.title} movieDescription={movieItem.description} posterURL={movieItem.poster_url ?? "/movie-placeholder-780x439.png"}/>
+    )
+  }
 
     return (
       <>
       {/* Only render if locationData exists */}
       { this.props.locationData &&
-      <div className="LocationData">
         <Accordion flush activeKey={this.state.eventKey} className="LocationData text-center" placement="bottom">
           <Accordion.Item eventKey={0}>
             <Accordion.Header onClick={this.handleClick} className="LocationData_header active">
             { this.props.locationData?.display_name } 
             </Accordion.Header>
-            <Accordion.Body>
+            <Accordion.Body className="LocationBody">
               <div className="LocationData_coordinates">
                 {this.props.locationData?.lat}, {this.props.locationData?.lon}
               </div>
@@ -42,18 +47,13 @@ class LocationDataDisplay extends React.Component {
               </ul>
               }
               {this.props.movieData &&
-              <Carousel className="MovieList">
-                {this.props.movieData.map((movie, i) =>
-                  <Carousel.Item key={i}>
-                    <Movie movieTitle={movie.title} posterURL={movie.poster_url ?? "/movie-placeholder-780x439.png"}/>
-                  </Carousel.Item>
-                )}
+              <Carousel className="Movie">
+               {movieItems()}
               </Carousel>
               }
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
-      </div>
       }
     </>
     )
