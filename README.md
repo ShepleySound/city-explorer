@@ -59,7 +59,7 @@ This project was bootstrapped with create-react-app. The application uses Axios 
 
 <details><summary>Front-End Response Request Diagram</summary>
 
-![Front-End Response Request Diagram](docs/front-end_response-request.jpg)
+![Request Response Diagram](docs/cityexplorer-requestresponse-diagram.jpg)
 
 </details>
 
@@ -97,3 +97,9 @@ This project was bootstrapped with create-react-app. The application uses Axios 
 | Feature Name | Estimated Time | Start Time | Finish Time |
 | ------------ | -------------- | ---------- | ----------- |
 | Weather Client | 45 Minutes | 5:30PM | 6:15PM |
+
+### August 25, 2022
+
+| Feature Name | Estimated Time | Start Time | Finish Time |
+| ------------ | -------------- | ---------- | ----------- |
+| Movie Client | 45 Minutes | 07:45AM | 08:45AM |
