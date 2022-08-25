@@ -56,6 +56,7 @@ class App extends React.Component {
             <LocationDataDisplay
               locationData={this.state.searchResult}
               weatherData={this.state.weatherForecast}
+              movieData={this.state.movieList}
             />
             <picture className="MapSlot">
               <source media="(max-width: 799px)" srcSet={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=600x1200`}/>
