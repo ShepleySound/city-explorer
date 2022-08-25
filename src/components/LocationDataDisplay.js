@@ -42,10 +42,10 @@ class LocationDataDisplay extends React.Component {
               </ul>
               }
               {this.props.movieData &&
-              <Carousel className="LocationData_movieList">
+              <Carousel className="MovieList">
                 {this.props.movieData.map((movie, i) =>
                   <Carousel.Item key={i}>
-                  <Movie movieTitle={movie.title} posterURL={movie.poster_url ?? "https://placehold.co/400x600?text=Poster%0AUnavailable&font=roboto"}/>
+                    <Movie movieTitle={movie.title} posterURL={movie.poster_url ?? "/movie-placeholder-780x439.png"}/>
                   </Carousel.Item>
                 )}
               </Carousel>
