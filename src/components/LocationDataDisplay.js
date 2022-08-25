@@ -1,6 +1,6 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
-// import Carousel from "react-bootstrap/Carousel";
+import Carousel from "react-bootstrap/Carousel";
 import Weather from "./Weather";
 import Movie from "./Movie";
 class LocationDataDisplay extends React.Component {
@@ -42,11 +42,13 @@ class LocationDataDisplay extends React.Component {
               </ul>
               }
               {this.props.movieData &&
-              <ul className="LocationData_movieList">
-                {this.props.movieData.map((movie, i) => 
-                  <Movie key={i} movieTitle={movie.title} posterURL={movie.poster_url}/>
+              <Carousel className="LocationData_movieList">
+                {this.props.movieData.map((movie, i) =>
+                  <Carousel.Item key={i}>
+                  <Movie movieTitle={movie.title} posterURL={movie.poster_url ?? "https://placehold.co/400x600?text=Poster%0AUnavailable&font=roboto"}/>
+                  </Carousel.Item>
                 )}
-              </ul>
+              </Carousel>
               }
             </Accordion.Body>
           </Accordion.Item>

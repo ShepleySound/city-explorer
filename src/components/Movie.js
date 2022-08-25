@@ -9,7 +9,7 @@ class Movie extends React.Component {
         <Card className="MovieCard">
           <Card.Header>{this.props.movieTitle}</Card.Header>
           <Card.Body>
-            <Image src={this.props.posterURL} width={150}/>
+            <Image src={this.props.posterURL} height={300}/>
           </Card.Body>
         </Card>
     )
