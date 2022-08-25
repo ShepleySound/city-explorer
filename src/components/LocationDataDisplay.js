@@ -1,7 +1,8 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
+import Carousel from "react-bootstrap/Carousel";
 import Weather from "./Weather";
-
+import Movie from "./Movie";
 class LocationDataDisplay extends React.Component {
   constructor(props) {
     super(props)
@@ -37,8 +38,17 @@ class LocationDataDisplay extends React.Component {
               <ul className="LocationData_weatherList">
                 {this.props.weatherData.map((day, i) => 
                   <Weather key={i} weatherDate={day.date} weatherDescription={day.description}/>
-                  )}
+                )}
               </ul>
+              }
+              {this.props.movieData &&
+              <Carousel className="LocationData_movieList">
+                {this.props.movieData.map((movie, i) =>
+                  <Carousel.Item key={i}>
+                  <Movie movieTitle={movie.title} posterURL={movie.poster_url ?? "https://placehold.co/400x600?text=Poster%0AUnavailable&font=roboto"}/>
+                  </Carousel.Item>
+                )}
+              </Carousel>
               }
             </Accordion.Body>
           </Accordion.Item>
