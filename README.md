@@ -1,7 +1,7 @@
 # City Explorer
 
 **Author**: Robert Shepley  
-**Version**: 0.1.0  
+![Version](https://img.shields.io/github/package-json/v/shepleysound/city-explorer)
 
 ## Overview
 
