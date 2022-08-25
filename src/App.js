@@ -26,9 +26,10 @@ class App extends React.Component {
   handleSearch = async (e) => {
     e.preventDefault()
     try {
-      const locationResponse = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1`);
+      const locationResponse = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1&dedupe=1&normalizeaddress=1&normalizecity`);
       const weatherResponse = await axios.get(`${process.env.REACT_APP_BACK_END_SERVER_URL}weather?lat=${locationResponse.data[0].lat}&lon=${locationResponse.data[0].lon}`);
-      const movieResponse = await axios.get(`${process.env.REACT_APP_BACK_END_SERVER_URL}movies?city=${'seattle'}`);
+      const movieResponse = locationResponse.data[0].address.city && await axios.get(`${process.env.REACT_APP_BACK_END_SERVER_URL}movies?city=${locationResponse.data[0].address.city}`);
+      console.log(locationResponse.data)
       console.log(movieResponse.data)
       this.setState({
         searchResult: locationResponse.data[0],
