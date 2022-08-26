@@ -77,6 +77,8 @@ This project was bootstrapped with create-react-app. The application uses Axios 
 
 ***08-23-2022 6:15PM*** - Application displays weather data for static data from a custom API.
 
+***08-25-2022 8:00PM*** - New weather display features, further modularization allows for faster updates in the future, and further checking for invalid API responses.
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
@@ -103,3 +105,5 @@ This project was bootstrapped with create-react-app. The application uses Axios 
 | Feature Name | Estimated Time | Start Time | Finish Time |
 | ------------ | -------------- | ---------- | ----------- |
 | Movie Client | 45 Minutes | 07:45AM | 08:45AM |
+| Restyling | 3 Hours | 1:30PM | 5PM |
+| Modularizing | 1 Hour | 5:30PM | 6:45 |
