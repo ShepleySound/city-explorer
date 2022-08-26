@@ -21,7 +21,6 @@ class LocationDataDisplay extends React.Component {
   }
   
   render() {
-
     return (
       <>
       {/* Only render if locationData exists */}
@@ -41,7 +40,7 @@ class LocationDataDisplay extends React.Component {
                   <Weather weatherData={this.props.weatherData}/>
 
                 </Tab>
-                <Tab eventKey="movies" title="Movies" disabled={!this.props.movieData}>
+                <Tab eventKey="movies" title="Movies" disabled={!this.props.movieData || this.props.movieData.length === 0}>
                 <Movies movieData={this.props.movieData}/>
                 </Tab>
               </Tabs>

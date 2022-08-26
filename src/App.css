@@ -4,12 +4,12 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  /* .App-logo {
     animation: App-logo-spin infinite 20s linear;
-  }
+  } */
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -17,7 +17,7 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 .Header {
   display: flex;
@@ -78,7 +78,7 @@
 .tab-pane {
   max-width: 90vw;
   display: flex;
-  overflow: scroll;
+  /* overflow: scroll; */
   border-radius: 8px;
   border: 1px solid #cccccc;
 }
@@ -100,6 +100,24 @@
 
 .WeatherCard .card-body {
   padding: 0;
+}
+
+.WeatherCard_tempContainer {
+  margin-bottom: 8px;
+}
+
+.WeatherCard_tempContainer h4,
+.WeatherCard_tempContainer h5 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.WeatherCard_tempContainer.highTemp {
+  color: rgb(228, 81, 23);
+}
+
+.WeatherCard_tempContainer.lowTemp {
+  color: rgb(36, 181, 201);
 }
 
 .WeatherCard_popContainer {

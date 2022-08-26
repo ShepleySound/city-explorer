@@ -46,7 +46,7 @@ class App extends React.Component {
     return (
       <>
         <header className="Header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo" width={100} height={100} />
           <SearchForm thrownError={this.state.thrownError} handleChange={this.handleChange} handleSearch={this.handleSearch}></SearchForm>
         </header>
         <main className='Main'>
