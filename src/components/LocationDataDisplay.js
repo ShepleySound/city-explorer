@@ -1,7 +1,11 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Carousel from "react-bootstrap/Carousel";
-import Weather from "./Weather";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+
+import Weather from "./Weather"
+import WeatherItem from "./WeatherItem";
 import Movie from "./Movie";
 class LocationDataDisplay extends React.Component {
   constructor(props) {
@@ -17,10 +21,9 @@ class LocationDataDisplay extends React.Component {
   }
   
   render() {
-
+  
   const movieItems = () => {
-    console.log(this.props.movieData)
-    return this.props.movieData.map((movieItem, i) => 
+    return this.props.movieData?.map((movieItem, i) => 
         <Movie key={i} movieTitle={movieItem.title} movieDescription={movieItem.description} posterURL={movieItem.poster_url ?? "/movie-placeholder-780x439.png"}/>
     )
   }
@@ -35,22 +38,22 @@ class LocationDataDisplay extends React.Component {
             { this.props.locationData?.display_name } 
             </Accordion.Header>
             <Accordion.Body className="LocationBody">
-              <div className="LocationData_coordinates">
-                {this.props.locationData?.lat}, {this.props.locationData?.lon}
-              </div>
-              {this.props.weatherData &&
-              
-              <ul className="LocationData_weatherList">
-                {this.props.weatherData.map((day, i) => 
-                  <Weather key={i} weatherDate={day.date} weatherDescription={day.description}/>
-                )}
-              </ul>
-              }
-              {this.props.movieData &&
-              <Carousel className="Movie">
-               {movieItems()}
-              </Carousel>
-              }
+              <Tabs
+                defaultActiveKey={"weather"}
+                id="location-data"
+              >
+                <Tab eventKey="weather" title="Weather" disabled={!this.props.weatherData}>
+                  
+                  <Weather weatherData={this.props.weatherData}/>
+
+                </Tab>
+                <Tab eventKey="movies" title="Movies" disabled={!this.props.movieData}>
+                <Carousel className="Movie">
+                  {movieItems()}
+                </Carousel>
+                </Tab>
+              </Tabs>
+
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
