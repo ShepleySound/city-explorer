@@ -59,9 +59,10 @@ This project was bootstrapped with create-react-app. The application uses Axios 
 
 <details><summary>Front-End Response Request Diagram</summary>
 
+![Request Response Diagram](docs/front-end_request-response_v1.jpg)
+
 ![Request Response Diagram](docs/cityexplorer-requestresponse-diagram.jpg)
 
-![Request Response Diagram](docs/front-end_request-response_v1.jpg')
 
 </details>
 
