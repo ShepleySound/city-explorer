@@ -4,12 +4,12 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  /* .App-logo {
     animation: App-logo-spin infinite 20s linear;
-  }
+  } */
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -17,7 +17,7 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 .Header {
   display: flex;
@@ -41,9 +41,17 @@
   bottom: 0;
   width: 100%;
   max-height: 100%;
-  overflow: scroll;
-
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
+
+.LocationData_header {
+  position: relative
+}
+
+
+
+
 
 .btn {
   border-color: #ced4da;
@@ -60,18 +68,99 @@
   object-fit: contain;
 }
 
-.LocationData_weatherList {
+.LocationBody {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-
+  position: relative;
 }
 
-.LocationData_movieList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+.tab-pane {
+  max-width: 90vw;
+  display: flex;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
 }
+
+.LocationData_weatherList {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
 
 .WeatherCard {
-  width: max-content;
+  list-style: none;
+  box-sizing: content-box;
+  min-width: 65px;
+  word-wrap: normal;
+  /* padding: 0px 8px; */
+}
+
+.WeatherCard .card-body {
+  padding: 0;
+}
+
+.WeatherCard_tempContainer {
+  margin-bottom: 8px;
+}
+
+.WeatherCard_tempContainer h4,
+.WeatherCard_tempContainer h5 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.WeatherCard_tempContainer.highTemp {
+  color: rgb(228, 81, 23);
+}
+
+.WeatherCard_tempContainer.lowTemp {
+  color: rgb(36, 181, 201);
+}
+
+.WeatherCard_popContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1em;
+  margin-bottom: 1em;
+}
+
+.WeatherCard_popIcon {
+  width: 1em;
+
+}
+
+.WeatherCard_popValue {
+  font-size: 1em;
+  margin: 0;
+}
+
+.Movie {
+  max-width: 780px;
+}
+
+.Movie_image {
+  object-fit: cover;
+  width: 100%;
+  max-height: 75vh;
+}
+
+.Movie_caption {
+  max-height: 70%;
+  overflow: scroll;
+  top: 1rem;
+  bottom: 1rem;
+  scrollbar-width: none;
+  background-color: #121212cc;
+  border-radius: 8px;
+  padding: 2em;
+}
+
+.Movie_caption::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }

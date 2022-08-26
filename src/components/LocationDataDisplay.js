@@ -1,8 +1,10 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
-import Carousel from "react-bootstrap/Carousel";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 import Weather from "./Weather";
-import Movie from "./Movie";
+import Movies from "./Movies";
+
 class LocationDataDisplay extends React.Component {
   constructor(props) {
     super(props)
@@ -17,43 +19,33 @@ class LocationDataDisplay extends React.Component {
   }
   
   render() {
-  
-
     return (
       <>
       {/* Only render if locationData exists */}
       { this.props.locationData &&
-      <div className="LocationData">
         <Accordion flush activeKey={this.state.eventKey} className="LocationData text-center" placement="bottom">
           <Accordion.Item eventKey={0}>
             <Accordion.Header onClick={this.handleClick} className="LocationData_header active">
             { this.props.locationData?.display_name } 
             </Accordion.Header>
-            <Accordion.Body>
-              <div className="LocationData_coordinates">
-                {this.props.locationData?.lat}, {this.props.locationData?.lon}
-              </div>
-              {this.props.weatherData &&
-              
-              <ul className="LocationData_weatherList">
-                {this.props.weatherData.map((day, i) => 
-                  <Weather key={i} weatherDate={day.date} weatherDescription={day.description}/>
-                )}
-              </ul>
-              }
-              {this.props.movieData &&
-              <Carousel className="LocationData_movieList">
-                {this.props.movieData.map((movie, i) =>
-                  <Carousel.Item key={i}>
-                  <Movie movieTitle={movie.title} posterURL={movie.poster_url ?? "https://placehold.co/400x600?text=Poster%0AUnavailable&font=roboto"}/>
-                  </Carousel.Item>
-                )}
-              </Carousel>
-              }
+            <Accordion.Body className="LocationBody">
+              <Tabs
+                defaultActiveKey={"weather"}
+                id="location-data"
+              >
+                <Tab eventKey="weather" title="Weather" disabled={!this.props.weatherData}>
+                  
+                  <Weather weatherData={this.props.weatherData}/>
+
+                </Tab>
+                <Tab eventKey="movies" title="Movies" disabled={!this.props.movieData || this.props.movieData.length === 0}>
+                <Movies movieData={this.props.movieData}/>
+                </Tab>
+              </Tabs>
+
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
-      </div>
       }
     </>
     )

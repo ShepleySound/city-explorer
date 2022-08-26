@@ -15,7 +15,7 @@ class SearchForm extends React.Component {
           onChange={this.props.handleChange}
           placeholder="Enter Location..."
         />
-        <Button type="submit" variant="light"><img src={searchIcon} alt="Search" width='20'/></Button>
+        <Button type="submit" variant="light"><img src={searchIcon} alt="Search" width={20} height={20}/></Button>
         </InputGroup>
         {this.props.thrownError &&
           <Alert variant={"danger"} className="position-absolute opacity-75">{this.props.thrownError?.message}</Alert>

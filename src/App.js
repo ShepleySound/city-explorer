@@ -17,6 +17,41 @@ class App extends React.Component {
     }
   }
 
+  queryLocation = () => {
+    const baseUrl = 'https://us1.locationiq.com/v1/search'
+    const params = {
+      key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
+      q: this.state.searchQuery,
+      format: 'json',
+      addressdetails: 1,
+      dedupe: 1,
+      normalizeaddress: 1,
+      normalizecity: 1,
+
+    }
+    return axios.get(baseUrl, { params })
+  }
+
+  queryWeather = (location) => {
+    const locationData = location.data[0]
+    const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}weather`
+    const params = {
+      lat: locationData.lat,
+      lon: locationData.lon,
+    }
+    return axios.get(baseUrl, { params });
+  }
+
+  queryMovie = (location) => {
+    if (location.data[0].address.city) {
+      const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}movies`
+      const params = {
+        city: location.data[0].address.city,
+      }
+      return axios.get(baseUrl, { params });
+    } else return;
+  }
+
   handleChange = (e) => {
     this.setState({
       searchQuery: e.target.value,
@@ -26,18 +61,17 @@ class App extends React.Component {
   handleSearch = async (e) => {
     e.preventDefault()
     try {
-      const locationResponse = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1&dedupe=1&normalizeaddress=1&normalizecity`);
-      const weatherResponse = await axios.get(`${process.env.REACT_APP_BACK_END_SERVER_URL}weather?lat=${locationResponse.data[0].lat}&lon=${locationResponse.data[0].lon}`);
-      const movieResponse = locationResponse.data[0].address.city && await axios.get(`${process.env.REACT_APP_BACK_END_SERVER_URL}movies?city=${locationResponse.data[0].address.city}`);
-      console.log(locationResponse.data)
-      console.log(movieResponse.data)
+      const locationResponse = await this.queryLocation();
+      const weatherResponse = await this.queryWeather(locationResponse);
+      const movieResponse = await this.queryMovie(locationResponse)
       this.setState({
         searchResult: locationResponse.data[0],
         thrownError: null,
         weatherForecast: weatherResponse.data,
-        movieList: movieResponse.data
+        movieList: movieResponse?.data
       })
     } catch (error) {
+      console.log(error)
       this.setState({
         thrownError: error,
       })
@@ -47,7 +81,7 @@ class App extends React.Component {
     return (
       <>
         <header className="Header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo" width={100} height={100} />
           <SearchForm thrownError={this.state.thrownError} handleChange={this.handleChange} handleSearch={this.handleSearch}></SearchForm>
         </header>
         <main className='Main'>
