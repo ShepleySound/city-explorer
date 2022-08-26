@@ -19,20 +19,36 @@ class App extends React.Component {
 
   queryLocation = () => {
     const baseUrl = 'https://us1.locationiq.com/v1/search'
+    const params = {
+      key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
+      q: this.state.searchQuery,
+      format: 'json',
+      addressdetails: 1,
+      dedupe: 1,
+      normalizeaddress: 1,
+      normalizecity: 1,
 
-    return axios.get(`${baseUrl}?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1&dedupe=1&normalizeaddress=1&normalizecity`)
+    }
+    return axios.get(baseUrl, { params })
   }
 
   queryWeather = (location) => {
+    const locationData = location.data[0]
     const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}weather`
-
-    return axios.get(`${baseUrl}?lat=${location.data[0].lat}&lon=${location.data[0].lon}`);
+    const params = {
+      lat: locationData.lat,
+      lon: locationData.lon,
+    }
+    return axios.get(baseUrl, { params });
   }
 
   queryMovie = (location) => {
     if (location.data[0].address.city) {
       const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}movies`
-      return axios.get(`${baseUrl}?city=${location.data[0].address.city}`);
+      const params = {
+        city: location.data[0].address.city,
+      }
+      return axios.get(baseUrl, { params });
     } else return;
   }
 
