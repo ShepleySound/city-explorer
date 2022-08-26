@@ -155,17 +155,12 @@
   top: 1rem;
   bottom: 1rem;
   scrollbar-width: none;
+  background-color: #121212cc;
+  border-radius: 8px;
+  padding: 2em;
 }
 
 .Movie_caption::-webkit-scrollbar {
   width: 0;
   height: 0;
-}
-
-.Movie_caption_title {
-  background-color: #121212aa;
-}
-
-.Movie_caption_description {
-  background-color: #12121264;
 }
