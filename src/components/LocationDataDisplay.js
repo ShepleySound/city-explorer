@@ -3,10 +3,10 @@ import Accordion from "react-bootstrap/Accordion";
 import Carousel from "react-bootstrap/Carousel";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import Weather from "./Weather";
+import Movies from "./Movies";
+import MovieItem from "./MovieItem";
 
-import Weather from "./Weather"
-import WeatherItem from "./WeatherItem";
-import Movie from "./Movie";
 class LocationDataDisplay extends React.Component {
   constructor(props) {
     super(props)
@@ -21,12 +21,6 @@ class LocationDataDisplay extends React.Component {
   }
   
   render() {
-  
-  const movieItems = () => {
-    return this.props.movieData?.map((movieItem, i) => 
-        <Movie key={i} movieTitle={movieItem.title} movieDescription={movieItem.description} posterURL={movieItem.poster_url ?? "/movie-placeholder-780x439.png"}/>
-    )
-  }
 
     return (
       <>
@@ -48,9 +42,7 @@ class LocationDataDisplay extends React.Component {
 
                 </Tab>
                 <Tab eventKey="movies" title="Movies" disabled={!this.props.movieData}>
-                <Carousel className="Movie">
-                  {movieItems()}
-                </Carousel>
+                <Movies movieData={this.props.movieData}/>
                 </Tab>
               </Tabs>
 

@@ -1,10 +1,9 @@
 import React from "react";
-import Card from "react-bootstrap/Card"
 import Image from "react-bootstrap/Image"
 import Carousel from "react-bootstrap/Carousel";
 
 
-class Movie extends React.Component {
+class MovieItem extends React.Component {
 
   render() {
     const { movieTitle, movieDescription, posterURL, ...rest } = this.props
@@ -16,15 +15,8 @@ class Movie extends React.Component {
             <p className="Movie_caption_description">{this.props.movieDescription}</p>
           </Carousel.Caption>
         </Carousel.Item>
-
-        // <Card className="MovieCard">
-        //   <Card.Header>{this.props.movieTitle}</Card.Header>
-        //   <Card.Body>
-        //     <Image src={this.props.posterURL} height={300}/>
-        //   </Card.Body>
-        // </Card>
     )
   }
 }
 
-export default Movie;
+export default MovieItem;
