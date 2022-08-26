@@ -1,11 +1,9 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
-import Carousel from "react-bootstrap/Carousel";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Weather from "./Weather";
 import Movies from "./Movies";
-import MovieItem from "./MovieItem";
 
 class LocationDataDisplay extends React.Component {
   constructor(props) {

@@ -16,11 +16,10 @@ class Movies extends React.Component {
   }
 
   render() {
-    const { movieTitle, movieDescription, posterURL, ...rest } = this.props
     return (
       <Carousel className="Movie">
-      {this.movieItems()}
-    </Carousel>
+        {this.movieItems()}
+      </Carousel>
     )
   }
 }
