@@ -78,7 +78,6 @@
 .tab-pane {
   max-width: 90vw;
   display: flex;
-  /* overflow: scroll; */
   border-radius: 8px;
   border: 1px solid #cccccc;
 }
@@ -94,8 +93,10 @@
 
 .WeatherCard {
   list-style: none;
-  min-width: 50px;
+  box-sizing: content-box;
+  min-width: 65px;
   word-wrap: normal;
+  /* padding: 0px 8px; */
 }
 
 .WeatherCard .card-body {
