@@ -17,6 +17,25 @@ class App extends React.Component {
     }
   }
 
+  queryLocation = () => {
+    const baseUrl = 'https://us1.locationiq.com/v1/search'
+
+    return axios.get(`${baseUrl}?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1&dedupe=1&normalizeaddress=1&normalizecity`)
+  }
+
+  queryWeather = (location) => {
+    const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}weather`
+
+    return axios.get(`${baseUrl}?lat=${location.data[0].lat}&lon=${location.data[0].lon}`);
+  }
+
+  queryMovie = (location) => {
+    if (location.data[0].address.city) {
+      const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}movies`
+      return axios.get(`${baseUrl}?city=${location.data[0].address.city}`);
+    } else return;
+  }
+
   handleChange = (e) => {
     this.setState({
       searchQuery: e.target.value,
@@ -26,9 +45,9 @@ class App extends React.Component {
   handleSearch = async (e) => {
     e.preventDefault()
     try {
-      const locationResponse = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchQuery}&format=json&addressdetails=1&dedupe=1&normalizeaddress=1&normalizecity`);
-      const weatherResponse = await axios.get(`${process.env.REACT_APP_BACK_END_SERVER_URL}weather?lat=${locationResponse.data[0].lat}&lon=${locationResponse.data[0].lon}`);
-      const movieResponse = locationResponse.data[0].address.city && await axios.get(`${process.env.REACT_APP_BACK_END_SERVER_URL}movies?city=${locationResponse.data[0].address.city}`);
+      const locationResponse = await this.queryLocation();
+      const weatherResponse = await this.queryWeather(locationResponse);
+      const movieResponse = await this.queryMovie(locationResponse)
       this.setState({
         searchResult: locationResponse.data[0],
         thrownError: null,
