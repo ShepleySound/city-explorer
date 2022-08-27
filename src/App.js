@@ -1,13 +1,11 @@
-import logo from './assets/map-icon.svg';
 import SearchForm from './components/SearchForm.js';
 import LocationDataDisplay from './components/LocationDataDisplay';
-import Image from 'react-bootstrap/Image';
 import React from 'react';
 import axios from 'axios';
 import mapboxgl from '!mapbox-gl'; //eslint-disable-line import/no-webpack-loader-syntax
 import './App.css';
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2hlcGxleXNvdW5kIiwiYSI6ImNsN2F1cTI3cDBjNzMzd3BhYXd1MGlscDYifQ.QtKqlciPrTivv1mXtpoO5A'
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
 class App extends React.Component {
   constructor(props) {
@@ -139,12 +137,6 @@ class App extends React.Component {
               weatherData={this.state.weatherForecast}
               movieData={this.state.movieList}
             />
-
-            {/* <picture className="MapSlot">
-              <source media="(max-width: 799px)" srcSet={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=600x1200`}/>
-              <source media="(min-width: 800px)" srcSet={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=1920x1080`}/>
-              <Image className='MapSlot_image' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.searchResult?.lat},${this.state.searchResult?.lon}&zoom=13&size=480x480`} alt="Map"/>
-            </picture> */}
         </>
         }
         <div ref={this.mapContainer}
