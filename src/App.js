@@ -74,7 +74,7 @@ class App extends React.Component {
       const weatherResponse = await this.queryWeather(locationResponse);
       const movieResponse = await this.queryMovie(locationResponse);
       this.setState({
-        searchResult: locationResponse,
+        searchResult: locationResponse.data,
         thrownError: null,
         weatherForecast: weatherResponse.data,
         movieList: movieResponse?.data,
