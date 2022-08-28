@@ -2,56 +2,34 @@ import SearchForm from './components/SearchForm.js';
 import LocationDataDisplay from './components/LocationDataDisplay';
 import React from 'react';
 import axios from 'axios';
-import mapboxgl from '!mapbox-gl'; //eslint-disable-line import/no-webpack-loader-syntax
 import './App.css';
+import Map from './components/Map.js';
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
 class App extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
-      zoom: 12,
       searchResult: null,
       searchQuery: '',
       thrownError: null,
       weatherForecast: null,
+      isUpdating: true,
     }
-    this.mapContainer = React.createRef();
-
   }
 
-  // Initialize location using Geolocation API.
   async componentDidMount() {
+    // Initialize location using Geolocation API.
     const initLocation = await this.getCurrentLocation();
     this.setState({
       lat: initLocation.coords.latitude ?? 70,
       lon: initLocation.coords.longitude ?? -40
     }, () => {
-      const { lat, lon, zoom } = this.state;
-      const map = new mapboxgl.Map({
-        container: this.mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [lon, lat],
-        zoom: zoom
-      });
-      map.addControl(new
-        mapboxgl.GeolocateControl())
-      map.addControl(new
-        mapboxgl.NavigationControl())
-      this.setState({
-        map: map
-      })
+
     })
   }
-
-  flyToLocation() {
-    this.state.map.flyTo({
-      center: [this.state.lon, this.state.lat],
-      zoom: 12
-    })
-  }
-
+  
   // Wrap Geolocation API object in a promise.
   getCurrentLocation = () => {
     return new Promise((resolve, reject) => 
@@ -112,8 +90,9 @@ class App extends React.Component {
         movieList: movieResponse?.data,
         lat: locationResponse.data[0].lat,
         lon: locationResponse.data[0].lon,
+        isUpdating: true,
       }, () => {
-        this.flyToLocation();
+        // this.handleFly()
       })
     } catch (error) {
       console.log(error)
@@ -122,8 +101,14 @@ class App extends React.Component {
       })
     }
   };
+
+  toggleUpdating = (bool) => {
+    this.setState({
+      isUpdating: bool
+    })
+  }
+
   render() {
-    
     return (
       <>
         <header className="Header">
@@ -139,8 +124,9 @@ class App extends React.Component {
             />
         </>
         }
-        <div ref={this.mapContainer}
-            className="mapContainer" />
+        {this.state.lon && this.state.lat && 
+          <Map lat={this.state.lat} lon={this.state.lon} isUpdating={this.state.isUpdating} toggleUpdating={this.toggleUpdating}/>
+        }
         </main>
         <footer>
         </footer>
