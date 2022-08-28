@@ -41,17 +41,20 @@ class Map extends React.Component {
     })
     this.props.toggleUpdating(false)
   }
+
+  componentDidUpdate() {
+    if (this.state.map && this.props.isUpdating) {
+      this.handleFly()
+    }
+  }
     
   
   
   render() {
-    if (this.state.map && this.props.isUpdating) {
-      this.handleFly()
-    }
     
     return (
       <div ref={this.mapContainer}
-            className="mapContainer" handleFly/>
+            className="mapContainer"/>
     )
   }
 }

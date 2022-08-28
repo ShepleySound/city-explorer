@@ -50,9 +50,17 @@ class App extends React.Component {
     }
     return axios.get(baseUrl, { params })
   }
+
+  queryBackLocation = () => {
+    const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}location`
+    const params = {
+      query: this.state.searchQuery
+    }
+    return axios.get(baseUrl, { params })
+  }
   
   queryWeather = (location) => {
-    const locationData = location.data[0]
+    const locationData = location.data
     const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}weather`
     const params = {
       lat: locationData.lat,
@@ -62,10 +70,10 @@ class App extends React.Component {
   }
 
   queryMovie = (location) => {
-    if (location.data[0].address.city) {
+    if (location.data.address.city) {
       const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}movies`
       const params = {
-        city: location.data[0].address.city,
+        city: location.data.address.city,
       }
       return axios.get(baseUrl, { params });
     } else return;
@@ -80,16 +88,16 @@ class App extends React.Component {
   handleSearch = async (e) => {
     e.preventDefault()
     try {
-      const locationResponse = await this.queryLocation();
+      const locationResponse = await this.queryBackLocation();
       const weatherResponse = await this.queryWeather(locationResponse);
       const movieResponse = await this.queryMovie(locationResponse)
       this.setState({
-        searchResult: locationResponse.data[0],
+        searchResult: locationResponse.data,
         thrownError: null,
         weatherForecast: weatherResponse.data,
         movieList: movieResponse?.data,
-        lat: locationResponse.data[0].lat,
-        lon: locationResponse.data[0].lon,
+        lat: locationResponse.data.lat,
+        lon: locationResponse.data.lon,
         isUpdating: true,
       }, () => {
         // this.handleFly()
