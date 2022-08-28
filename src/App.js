@@ -37,6 +37,8 @@ class App extends React.Component {
     )
   }
 
+  // FRONT-END LOCATION QUERYING. 
+  // REPLACED BY SERVER-SIDE QUERYING.
   queryLocation = () => {
     const baseUrl = 'https://us1.locationiq.com/v1/search'
     const params = {
@@ -60,11 +62,10 @@ class App extends React.Component {
   }
   
   queryWeather = (location) => {
-    const locationData = location.data
     const baseUrl = `${process.env.REACT_APP_BACK_END_SERVER_URL}weather`
     const params = {
-      lat: locationData.lat,
-      lon: locationData.lon,
+      lat: location.data.lat,
+      lon: location.data.lon,
     }
     return axios.get(baseUrl, { params });
   }
@@ -90,7 +91,7 @@ class App extends React.Component {
     try {
       const locationResponse = await this.queryBackLocation();
       const weatherResponse = await this.queryWeather(locationResponse);
-      const movieResponse = await this.queryMovie(locationResponse)
+      const movieResponse = await this.queryMovie(locationResponse);
       this.setState({
         searchResult: locationResponse.data,
         thrownError: null,
@@ -99,8 +100,6 @@ class App extends React.Component {
         lat: locationResponse.data.lat,
         lon: locationResponse.data.lon,
         isUpdating: true,
-      }, () => {
-        // this.handleFly()
       })
     } catch (error) {
       console.log(error)
