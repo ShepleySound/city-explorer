@@ -49,19 +49,34 @@ To build the site on your local machine, perform the following steps -
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-Front-End - [React](https://reactjs.org/)  
+Front-End Framework - [React](https://reactjs.org/)  
 Icons/Logo - [Icons8](icons8.com)  
 Design/Styling - [react-bootstrap](https://react-bootstrap.github.io/)  
 Mapping/Geocoding API - [LocationIQ](https://locationiq.com/)  
 HTTP Client - [Axios](https://www.npmjs.com/package/axios)
 
-This project was bootstrapped with create-react-app. The application uses Axios as an HTTP client to query the LocationIQ API using a simple text input from the user. If a valid response is received, the application requests further data in the form of a map image, which is then displayed to the page.
+This project was bootstrapped with create-react-app.
+
+The front-end uses Axios as an HTTP client to query the LocationIQ API using a simple text input from the user. It then communicates with a Heroku-hosted back-end to retrieve data from other API's such as weather data and movie information.
+
+The UI is constructed using Bootstrap and some custom CSS. In the future, this may be restructured to use more custom components combined with [Material UI](mui.com).
+
+Currently in development is a shift towards using [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js) to render a fully interactive vector map, rather than pulling a static map from LocationIQ.
+
 
 <details><summary>Front-End Response Request Diagram</summary>
 
+### V1
+
 ![Request Response Diagram](docs/front-end_request-response_v1.jpg)
 
+### V2
+
 ![Request Response Diagram](docs/cityexplorer-requestresponse-diagram.jpg)
+
+### V3
+
+![Request Response Diagram](docs/cityexplorer-requestresponse-diagram_v2.jpg)
 
 
 </details>
